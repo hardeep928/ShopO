@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../css/Home.css";
 import Illustration from "../src/assets/illustration.png";
-import Saitama from "../src/assets/saitama.webp";
 import { useEffect, useState } from "react";
 
 const Home = () => {
