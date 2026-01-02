@@ -12,7 +12,12 @@ dotenv.config({ path: ".env.local" });
 const app = express();
 
 // middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://shop-o-znfl.vercel.app/",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // routes
