@@ -55,8 +55,14 @@ const Login = () => {
         inputData
       );
 
-      localStorage.setItem("token", res.data.token);
+      const token = res.data.token;
+
+      const decoded = JSON.parse(atob(token.split(".")[1]));
+      const expiryTime = decoded.exp * 1000;
+
+      localStorage.setItem("token", token);
       localStorage.setItem("username", res.data.user.username);
+      localStorage.setItem("tokenExpiry", expiryTime);
 
       navigate("/");
     } catch (err) {

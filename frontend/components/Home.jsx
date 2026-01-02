@@ -2,12 +2,15 @@ import { useNavigate } from "react-router-dom";
 import "../css/Home.css";
 import Illustration from "../src/assets/illustration.png";
 import { useEffect, useState } from "react";
+import NewArrivals from "../src/assets/NewArrivals.jpg";
+import BestSellers from "../src/assets/Bestsellers.webp";
+import Offers from "../src/assets/Offers.jpg";
 
 const Home = () => {
   const gridImages = [
-    { title: "New Arrivals", image: "../src/assets/NewArrivals.jpg" },
-    { title: "Best Sellers", image: "../src/assets/Bestsellers.webp" },
-    { title: "Offers", image: "../src/assets/Offers.jpg" },
+    { title: "New Arrivals", image: NewArrivals },
+    { title: "Best Sellers", image: BestSellers },
+    { title: "Offers", image: Offers },
   ];
 
   const categories = [

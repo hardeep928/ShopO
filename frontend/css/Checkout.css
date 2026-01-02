@@ -178,11 +178,34 @@
   }
 
   .payment-methods {
+    display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding-left: 0;
   }
-
   .payment-methods label {
-    margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 0;
+    font-size: 1rem;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+  }
+  .payment-methods label:hover {
+    background: #f0f0f0;
+  }
+  .payment-methods input[type="radio"] {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
   }
 
   .card-box,

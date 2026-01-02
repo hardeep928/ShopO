@@ -19,6 +19,7 @@ import PaymentSuccessful from "../components/PaymentSuccessful";
 import UpdateEmail from "../components/UpdateEmail";
 import UpdatePassword from "../components/UpdatePassword";
 import UpdateUsername from "../components/UpdateUsername";
+import AuthWatcher from "../components/AuthWatcher";
 
 function App() {
   const [filteredProds, setFilteredProds] = useState("");
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <div>
+        <AuthWatcher />
         <Routes>
           <Route
             path="/"

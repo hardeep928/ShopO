@@ -4,19 +4,19 @@
   padding: 10px 20px;
   background-color: #fff;
   position: relative;
+  z-index: 1000; /* Ensures header stays on top */
 }
-
 .left,
 .logo,
 .right {
   flex: 1;
 }
-
 .left {
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 1001;
 }
-
 .left ul {
   list-style: none;
   display: flex;
@@ -24,41 +24,34 @@
   margin: 0;
   padding: 0;
 }
-
 .left li {
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
 }
-
 .logo {
   display: flex;
   justify-content: center;
 }
-
 .logo img {
   width: 100px;
   height: auto;
 }
-
 .right {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 15px;
 }
-
 .right img {
   width: 22px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
 .right img:hover {
   transform: scale(1.1);
 }
-
 .searchbox {
   width: 220px;
   padding: 8px 14px;
@@ -68,65 +61,66 @@
   outline: none;
   transition: all 0.3s ease;
 }
-
 .searchbox::placeholder {
   color: #999;
 }
-
 .searchbox:focus {
   border-color: red;
   box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.15);
 }
-
 ul li a {
   text-decoration: none;
   color: black;
 }
-
 ul li a:hover {
   color: red;
   text-decoration: underline;
 }
-
 ul li a.active-link {
   color: red;
   text-decoration: underline;
 }
-
 .mobile-menu {
   position: absolute;
   top: 60px;
-  left: 20px;
-
+  left: 0;
   width: 220px;
   height: 220px;
   background: white;
-
   list-style: none;
   padding: 20px;
   margin: 0;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 20px;
-
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1002;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mobile-menu li {
   width: 80px;
   text-align: center;
 }
-
 .header-btn {
   background: transparent;
   border: none;
 }
-
 .logreg-btn {
   background-color: #fff;
   border: 1px solid black;
@@ -136,61 +130,48 @@ ul li a.active-link {
   transition: transform 0.2s ease;
   font-weight: 500;
 }
-
 .logreg-btn:hover {
   transform: scale(1.1);
   background-color: black;
   color: white;
 }
-
 @media (max-width: 480px) {
   .logo img {
     width: 60px;
   }
-
   .searchbox {
     width: 120px;
   }
-
   .right img {
     width: 20px;
   }
-
   .header-container {
     padding: 8px 15px;
   }
-
   .left ul {
     gap: 15px;
   }
 }
-
 @media (max-width: 480px) {
   .logo img {
     width: 60px;
   }
-
   .searchbox {
     width: 120px;
   }
-
   .right img {
     width: 18px;
   }
-
   .left ul {
     gap: 10px;
   }
-
   .right {
     gap: 8px;
   }
-
   .header-container {
     padding: 6px 10px;
   }
 }
-
 @media (max-width: 600px) {
   .searchbox {
     position: absolute;
@@ -198,11 +179,10 @@ ul li a.active-link {
     right: 10px;
     left: 10px;
     width: auto;
-    z-index: 1000;
+    z-index: 999;
     background: white;
     margin-bottom: 10px;
   }
-
   .header-container {
     position: relative;
   }

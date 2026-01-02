@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Profile.css";
 import axios from "axios";
@@ -12,6 +12,15 @@ const Profile = () => {
   const email = localStorage.getItem("email") || "user@email.com";
   const token = localStorage.getItem("token");
 
+  const tokenExpiry = localStorage.getItem("tokenExpiry");
+  const isExpired = tokenExpiry && Date.now() > tokenExpiry;
+
+  const logoutUser = (message = "Session expired. Please login again.") => {
+    localStorage.clear();
+    alert(message);
+    navigate("/account/login");
+  };
+
   if (!username) {
     return (
       <div className="profile-container">
@@ -20,25 +29,25 @@ const Profile = () => {
     );
   }
 
-  const handleDelete = () => {
-    const choice = confirm("Are you sure you want to Delete your Account?");
+  const handleDelete = async () => {
+    const choice = confirm("Are you sure you want to delete your account?");
+    if (!choice) return;
 
-    if (choice) {
-      axios
-        .delete(`${import.meta.env.VITE_APP_API_URL}/api/auth/delete`, {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_APP_API_URL}/api/auth/delete`,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        })
-        .then((res) => {
-          localStorage.clear(res.data.token);
-          alert("Account Deleted");
-          navigate("/");
-        })
-        .catch((err) => {
-          console.log(err);
-          setError(err.response?.data?.message || "Something went wrong");
-        });
+        }
+      );
+
+      localStorage.clear();
+      alert("Account deleted successfully");
+      navigate("/");
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong");
     }
   };
 
@@ -49,10 +58,14 @@ const Profile = () => {
           Hello, <span>{username}</span> 👋
         </h1>
         <p>Manage your account details</p>
+        {isExpired ? (
+          <p className="error-text">⚠ Session expired</p>
+        ) : (
+          <p className="success-text">✅ Session active</p>
+        )}
       </div>
 
       <div className="profile-card">
-        {/* 👇 GRID START */}
         <div className="profile-grid">
           <div className="profile-item">
             <h3>👤 Username</h3>
@@ -80,25 +93,16 @@ const Profile = () => {
 
           <div className="profile-item">
             <h3>📦 Orders</h3>
-            <p>View your past and current orders</p>
             <button onClick={() => navigate("/orders")}>
               View Your Orders
             </button>
           </div>
         </div>
-        {/* 👆 GRID END */}
 
-        {/* Actions */}
         <div className="profile-actions">
           <button
             className="logout"
-            onClick={() => {
-              const choice = confirm("Are you sure you want to Logout?");
-              if (choice) {
-                localStorage.clear();
-                navigate("/account/login");
-              }
-            }}
+            onClick={() => logoutUser("Logged out successfully")}
           >
             Logout
           </button>

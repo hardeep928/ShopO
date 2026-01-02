@@ -7,20 +7,14 @@ import User from "../src/assets/user.png";
 import Hamburger from "hamburger-react";
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-// import Close from "../src/assets/close.png";
 
 const Header = ({ setFilteredProds }) => {
   const [isOpen, setOpen] = useState(false);
-  const [width, setWidth] = useState();
-  // const [isToggled, setIsToggled] = useState(false);
-
+  const [width, setWidth] = useState(window.innerWidth);
   const username = localStorage.getItem("username");
   const token = localStorage.getItem("token");
-
   const navigate = useNavigate();
-
   const path = ["/profile", "/about", "/", "/cart", "/wishlist", "/orders"];
-
   const location = useLocation();
   const hideSearch =
     path.includes(location.pathname) ||
@@ -28,15 +22,14 @@ const Header = ({ setFilteredProds }) => {
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
+    handleResize();
     window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    return window.addEventListener("resize", handleResize);
-  }, [width]);
-
-  // const handleClick = () => {
-  //   setIsToggled(!isToggled);
-  //   setFilteredProds("");
-  // };
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
 
   const handleSearch = (e) => {
     setFilteredProds(e.target.value);
@@ -44,7 +37,6 @@ const Header = ({ setFilteredProds }) => {
 
   const handleLogout = () => {
     const choice = confirm("Are you sure you want to Logout of the Session?");
-
     if (choice) {
       localStorage.removeItem("token");
       localStorage.removeItem("username");
@@ -52,27 +44,32 @@ const Header = ({ setFilteredProds }) => {
     }
   };
 
+  const handleMenuClick = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="header-container">
       <div className="left">
         {width < 600 ? (
           <>
-            <Hamburger toggled={isOpen} toggle={setOpen} size={25} />
-
+            <div style={{ zIndex: 1003 }}>
+              <Hamburger toggled={isOpen} toggle={setOpen} size={25} />
+            </div>
             {isOpen && (
               <ul className="mobile-menu">
                 <li>
-                  <NavLink to="/" onClick={() => setOpen(false)}>
+                  <NavLink to="/" onClick={handleMenuClick}>
                     Home
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/products" onClick={() => setOpen(false)}>
+                  <NavLink to="/products" onClick={handleMenuClick}>
                     Products
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/about" onClick={() => setOpen(false)}>
+                  <NavLink to="/about" onClick={handleMenuClick}>
                     About
                   </NavLink>
                 </li>
@@ -93,13 +90,11 @@ const Header = ({ setFilteredProds }) => {
           </ul>
         )}
       </div>
-
       <div className="logo">
         <NavLink to="/">
           <img src={Logo} alt="logo" />
         </NavLink>
       </div>
-
       <div className="right">
         {!hideSearch ? (
           <input
@@ -110,13 +105,6 @@ const Header = ({ setFilteredProds }) => {
             onChange={handleSearch}
           />
         ) : null}
-
-        {/* {!hideSearch ? (
-          <button className="header-btn" onClick={handleClick}>
-            <img src={isToggled ? Close : Search} alt="Search Icon" />
-          </button>
-        ) : null} */}
-
         {token ? (
           <button className="logreg-btn" onClick={handleLogout}>
             Logout
@@ -129,13 +117,9 @@ const Header = ({ setFilteredProds }) => {
             Login
           </button>
         )}
-
         <NavLink to="/cart">
           <img src={Cart} alt="Cart Icon" />
         </NavLink>
-        {/* <NavLink to="/wishlist">
-          <img src={Heart} alt="Heart Icon" />
-        </NavLink> */}
         <NavLink to="/profile">
           <img src={User} alt="User Icon" />
         </NavLink>

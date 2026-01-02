@@ -13,6 +13,12 @@ const Products = ({ filteredProds, setFilteredProds }) => {
     setCurrentPage(1);
   }, [filteredProds]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
+  }, [currentPage]);
+
   const categories = [
     "mens-shirts",
     "womens-dresses",
