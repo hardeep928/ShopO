@@ -1,0 +1,144 @@
+/* Page wrapper */
+.profile-container {
+  min-height: 100vh;
+  width: 100%;
+  background: #f4f6f8;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 40px 16px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-header h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.profile-header span {
+  color: #ff4d4f;
+}
+
+.profile-header p {
+  color: #666;
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+/* Profile Card */
+.profile-card {
+  width: 100%;
+  max-width: 640px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔥 Grid layout inside card */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Sections */
+.profile-item {
+  padding: 18px;
+  border-radius: 12px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 🔥 key */
+  min-height: 180px; /* 🔥 equal height cards */
+}
+
+.profile-item h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-item p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.profile-item button {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.profile-item button:hover {
+  background: #ff4d4f;
+}
+
+/* Full-width actions */
+.profile-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-actions button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-actions .logout {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+.profile-actions .logout:hover {
+  background: #111;
+}
+
+.profile-actions .delete {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+.profile-actions .delete:hover {
+  background: #111;
+}
+
+/* 📱 Mobile: everything ONE column */
+@media (max-width: 480px) {
+  .profile-header h1 {
+    font-size: 26px;
+  }
+
+  .profile-card {
+    padding: 20px;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr; /* ✅ one line on mobile */
+  }
+}

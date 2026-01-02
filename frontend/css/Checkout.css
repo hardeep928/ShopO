@@ -1,0 +1,223 @@
+.checkout-page {
+  display: flex;
+  gap: 30px;
+  padding: 40px;
+  flex-wrap: wrap; /* Added to allow wrapping of content */
+  justify-content: space-between; /* Prevents overlap */
+}
+
+/* LEFT */
+.checkout-container {
+  flex: 2;
+  min-width: 300px; /* Prevents it from being too narrow */
+}
+
+.checkout-logo {
+  width: 120px;
+  display: block;
+  margin: 0 auto 10px; /* Centers the logo */
+}
+
+.checkout-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.checkout-form {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-form h3 {
+  margin: 20px 0 10px;
+  font-size: 1.2rem;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.payment-options {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.place-order-btn {
+  width: 100%;
+  padding: 14px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* RIGHT */
+.checkout-summary {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px; /* Keeps the summary sticky while scrolling */
+  height: fit-content;
+  min-width: 250px; /* Prevents it from being too narrow */
+  background-color: white; /* Ensures it's not transparent */
+}
+
+.checkout-summary h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.back-btn,
+.cancel-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.back-btn {
+  background: black;
+  color: white;
+}
+
+.cancel-btn {
+  background: #444;
+  color: white;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.payment-methods label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.card-box,
+.emi-box {
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.card-box input,
+.emi-box select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .checkout-page {
+    flex-direction: column;
+    padding: 20px; /* Reduced padding for mobile */
+  }
+
+  .checkout-container,
+  .checkout-summary {
+    flex: 1;
+    width: 100%;
+  }
+
+  .checkout-container h2 {
+    font-size: 1.2rem;
+  }
+
+  .checkout-form h3 {
+    font-size: 1.1rem;
+  }
+
+  .place-order-btn,
+  .back-btn,
+  .cancel-btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .payment-methods {
+    flex-direction: column;
+  }
+
+  .payment-methods label {
+    margin-bottom: 10px;
+  }
+
+  .card-box,
+  .emi-box {
+    padding: 12px; /* Reduce padding for mobile */
+  }
+
+  .summary-row {
+    flex-direction: column; /* Stack rows vertically on mobile */
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-container h2 {
+    font-size: 1rem;
+  }
+
+  .summary-row {
+    font-size: 0.9rem; /* Smaller text for mobile */
+  }
+
+  .payment-options {
+    flex-direction: column;
+  }
+
+  .payment-methods {
+    gap: 10px;
+  }
+
+  .place-order-btn {
+    font-size: 1.1rem;
+  }
+
+  .row {
+    flex-direction: column; /* Stack row elements vertically */
+  }
+}

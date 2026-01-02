@@ -1,0 +1,134 @@
+.orders-page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+}
+
+.orders-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.orders-header img {
+  height: 45px;
+}
+
+.orders-header h2 {
+  font-size: 28px;
+}
+
+.empty-orders {
+  text-align: center;
+  font-size: 18px;
+  color: gray;
+}
+
+.order-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.order-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status.placed {
+  background: #e0f2ff;
+  color: #0077cc;
+}
+
+.status.cancelled {
+  background: #ffe0e0;
+  color: #cc0000;
+}
+
+.order-products {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.order-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.order-item img {
+  width: 80px;
+  border-radius: 6px;
+}
+
+.order-item .title {
+  font-weight: 600;
+}
+
+.order-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.cancel-btn,
+.remove-btn {
+  background: black;
+  color: white;
+  border: none;
+  padding: 6px 12px; /* Smaller padding for compactness */
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px; /* Smaller font size */
+}
+
+.cancel-btn:hover,
+.remove-btn:hover {
+  background: #333;
+}
+
+.order-bottom {
+  display: flex;
+  justify-content: space-between; /* Align buttons side by side */
+  gap: 15px; /* Adjust space between the buttons */
+}
+
+.order-bottom button {
+  width: 48%; /* Ensure buttons stay in line */
+}
+
+@media (max-width: 768px) {
+  .order-bottom {
+    flex-direction: row; /* Keep buttons in one line */
+    gap: 10px; /* Space between buttons */
+  }
+
+  .cancel-btn,
+  .remove-btn {
+    width: 48%; /* Buttons stay in one line */
+    margin-bottom: 0; /* No margin for mobile */
+  }
+
+  .order-item img {
+    width: 60px; /* Smaller images for small screens */
+  }
+
+  .order-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
